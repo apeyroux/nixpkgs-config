@@ -67,7 +67,7 @@ in
             --prefix PYTHONPATH : "$(toPythonPath ${jedi})" \
             --prefix PYTHONPATH : "$(toPythonPath ${autopep8})" \
             --prefix PYTHONPATH : "$(toPythonPath ${flake8})" \
-	          --prefix PYTHONPATH : "$(toPythonPath ${grammalecte})" \
-	          --prefix PYTHONPATH : "$(toPythonPath ${python27Packages.rope})";
+            --prefix PYTHONPATH : "$(toPythonPath ${grammalecte})" \
+            --prefix PYTHONPATH : "$(toPythonPath ${python27Packages.rope})";
       '');
   })
