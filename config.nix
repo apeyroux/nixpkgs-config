@@ -5,6 +5,5 @@ with import <nixpkgs> {};
   packageOverrides = pkgs: rec {
     vscode = (import ./vscode.nix { inherit pkgs; });
     emacs = (import ./emacs.nix { inherit pkgs; });
-    flycheck-grammalecte = (import ./flycheck-grammalecte.nix { inherit pkgs; });
   };
 }
