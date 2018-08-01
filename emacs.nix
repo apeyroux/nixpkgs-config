@@ -58,11 +58,10 @@ let
 in
 
   emacs.overrideDerivation (old: rec {
-    # wrapProgram $out/bin/emacs --set MU4E ${mu}
-    postInstall = with python34Packages; (old.postInstall + ''
+    postInstall = with python36Packages; (old.postInstall + ''
       wrapProgram $out/bin/emacs --prefix PATH : ${lib.makeBinPath apps}
       wrapProgram $out/bin/emacs \
-            --prefix PYTHONPATH : "$(toPythonPath ${python3}):$(toPythonPath ${pip}):$PYTHONPATH" \
+            --prefix PYTHONPATH : "$(toPythonPath ${python36}):$(toPythonPath ${pip}):$PYTHONPATH" \
             --prefix PYTHONPATH : "$(toPythonPath ${virtualenv})" \
             --prefix PYTHONPATH : "$(toPythonPath ${elpy})" \
             --prefix PYTHONPATH : "$(toPythonPath ${jedi})" \
