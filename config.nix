@@ -1,21 +1,38 @@
 with import <nixpkgs> {};
 
 let
-  hie = (import /nix/store/0jbly87rqr9dy3s1bpq0rawpv0cz5d0a-hie-nix {}).hie82;
+  hie = (import (fetchFromGitHub {
+                   owner="domenkozar";
+                   repo="hie-nix";
+                   rev="e3113da";
+                   sha256="05rkzjvzywsg66iafm84xgjlkf27yfbagrdcb8sc9fd59hrzyiqk";
+                 }) {}).hie84;
   vscodeApps = with haskellPackages; with pythonPackages; [
+    binutils.bintools
+    cabal-install
+    cabal2nix
+    gcc
+    ghc
+    cabal-helper
+    alsa-core
+    gnumake
+    hdevtools
     hie
-    stack
     hoogle
     ipython
+    perl
+    stack
   ];
 in
 {
   allowUnfree = true;
   packageOverrides = pkgs: rec {
+
     vscode = pkgs.vscode.overrideDerivation (old: {
       postFixup = old.postFixup + ''
         wrapProgram $out/bin/code --prefix PATH : ${lib.makeBinPath vscodeApps}
       '';
     });
+
   };
 }
