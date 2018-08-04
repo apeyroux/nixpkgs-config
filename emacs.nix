@@ -4,7 +4,7 @@ with pkgs;
 
 let
 
-  apps = with haskell.packages.ghc822; [
+  apps = with pkgs.haskellPackages; [
       (import ./hie.nix { inherit pkgs; })
       ag
       aspellWithDictFR
@@ -42,6 +42,8 @@ let
       python36Packages.ipython
       python36Packages.jedi
       python36Packages.virtualenv
+      cargo
+      rustc
       stack
       structured-haskell-mode
       stylish-haskell
