@@ -5,5 +5,6 @@ with import <nixpkgs> {};
   packageOverrides = pkgs: rec {
     vscode = (import ./vscode.nix { inherit pkgs; });
     emacs = (import ./emacs.nix { inherit pkgs; });
+    kitty = (import ./kitty.nix { inherit pkgs; });
   };
 }
