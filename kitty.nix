@@ -9,12 +9,8 @@ let
 in
 
 kitty.overrideDerivation (old: {
-  installPhase = ''
-    runHook preInstall
-    mkdir -p $out
-    cp -r linux-package/{bin,share,lib} $out
+  installPhase = old.installPhase + ''
     wrapProgram "$out/bin/kitty" --prefix PATH : "$out/bin:${stdenv.lib.makeBinPath [ imagemagick xsel ]}" --add-flags "--config ${kittyCfg}"
-    runHook postInstall
   '';
 })
 
