@@ -10,7 +10,7 @@ in
 
 kitty.overrideDerivation (old: {
   installPhase = old.installPhase + ''
-    wrapProgram "$out/bin/kitty" --prefix PATH : "$out/bin:${stdenv.lib.makeBinPath [ imagemagick xsel ]}" --add-flags "--config ${kittyCfg}"
+    wrapProgram "$out/bin/kitty" --add-flags "--config ${kittyCfg}"
   '';
 })
 
