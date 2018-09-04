@@ -4,7 +4,8 @@ with pkgs;
 
 let
 
-  apps = with pkgs.haskellPackages; [
+  # apps = with haskell.packages.ghc861; [
+  apps = with haskellPackages; [
       (import ./hie.nix { inherit pkgs; })
       ag
       aspellWithDictFR
@@ -15,6 +16,7 @@ let
       emacs-all-the-icons-fonts
       gcc
       ghc
+      ghcid
       git
       gnumake
       go
@@ -30,7 +32,6 @@ let
       mercurial
       multimarkdown
       ncurses
-      present
       python27Packages.rope
       python36
       python36Packages.autopep8
