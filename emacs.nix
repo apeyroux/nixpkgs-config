@@ -7,31 +7,41 @@ let
   # apps = with haskellPackages; [
   apps = [
       # (import ./hie.nix { inherit pkgs; })
+      # end pdf
+      # pdf tools
       ag
       aspellWithDictFR
+      autoconf
+      automake
       binutils
       cabal-install
       cabal2nix
+      cargo
       docker-machine
       emacs-all-the-icons-fonts
       gcc
       ghc
-      haskellPackages.ghcid
       git
       gnumake
       go
-      happy
-      hindent
-      hlint
-      hoogle
-      hpack
+      haskellPackages.ghcid
+      haskellPackages.happy
+      haskellPackages.hindent
+      haskellPackages.hlint
+      haskellPackages.hoogle
+      haskellPackages.hpack
+      haskellPackages.structured-haskell-mode
+      haskellPackages.stylish-haskell
       htmlTidy
+      imagemagick
       isync
+      libpng
       libxml2
       makeWrapper
       mercurial
       multimarkdown
       ncurses
+      poppler # confusion avec poppler haskell
       python27Packages.rope
       python36
       python36Packages.autopep8
@@ -43,18 +53,8 @@ let
       python36Packages.ipython
       python36Packages.jedi
       python36Packages.virtualenv
-      # pdf tools
-      automake
-      autoconf
-      libpng
-      poppler # confusion avec poppler haskell
-      imagemagick
-      # end pdf
-      cargo
       rustc
       stack
-      structured-haskell-mode
-      stylish-haskell
       tshark
       w3m
       xclip
