@@ -3,10 +3,10 @@
 with pkgs;
 
 let
-
   # apps = with haskell.packages.ghc861; [
-  apps = with haskellPackages; [
-      (import ./hie.nix { inherit pkgs; })
+  # apps = with haskellPackages; [
+  apps = [
+      # (import ./hie.nix { inherit pkgs; })
       ag
       aspellWithDictFR
       binutils
@@ -16,7 +16,7 @@ let
       emacs-all-the-icons-fonts
       gcc
       ghc
-      ghcid
+      haskellPackages.ghcid
       git
       gnumake
       go
@@ -43,6 +43,13 @@ let
       python36Packages.ipython
       python36Packages.jedi
       python36Packages.virtualenv
+      # pdf tools
+      automake
+      autoconf
+      libpng
+      poppler # confusion avec poppler haskell
+      imagemagick
+      # end pdf
       cargo
       rustc
       stack
@@ -63,7 +70,6 @@ in
   emacs.overrideDerivation (old: rec {
     postInstall = with python36Packages; (old.postInstall + ''
       wrapProgram $out/bin/emacs --prefix PATH : ${lib.makeBinPath apps}
-      wrapProgram $out/bin/emacs \
             --prefix PYTHONPATH : "$(toPythonPath ${python36}):$(toPythonPath ${pip}):$PYTHONPATH" \
             --prefix PYTHONPATH : "$(toPythonPath ${virtualenv})" \
             --prefix PYTHONPATH : "$(toPythonPath ${elpy})" \
