@@ -68,7 +68,7 @@ static unsigned int cursorthickness = 2;
 static int bellvolume = 0;
 
 /* default TERM value */
-char *termname = "st-256color";
+char *termname = "xterm-256color";
 
 /*
  * spaces per tab
@@ -115,6 +115,7 @@ static const char *colorname[] = {
 	"#abb2bf",
 	"#282c34",
   "#ff3f80",
+  "#e67e22",
 };
 
 
@@ -125,7 +126,7 @@ static const char *colorname[] = {
 unsigned int defaultfg = 256;
 unsigned int defaultbg = 257;
 static unsigned int defaultcs = 258;
-static unsigned int defaultrcs = 257;
+static unsigned int defaultrcs = 259;
 
 /*
  * Default shape of cursor
@@ -134,7 +135,7 @@ static unsigned int defaultrcs = 257;
  * 6: Bar ("|")
  * 7: Snowman ("☃")
  */
-static unsigned int cursorshape = 2;
+static unsigned int cursorshape = 4;
 
 /*
  * Default columns and rows numbers
