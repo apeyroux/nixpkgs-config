@@ -7,5 +7,6 @@ with import <nixpkgs> {};
     emacs = (import ./emacs.nix { inherit pkgs; });
     kitty = (import ./kitty.nix { inherit pkgs; });
     pm-bridge = (import ./pm-bridge.nix { inherit pkgs; });
+    st = (import ./st.nix { inherit pkgs; });
   };
 }
