@@ -54,6 +54,7 @@ let
       python36Packages.jedi
       python36Packages.virtualenv
       rustc
+      siji
       stack
       tshark
       w3m
@@ -69,14 +70,15 @@ in
 
   emacs.overrideDerivation (old: rec {
     postInstall = with python36Packages; (old.postInstall + ''
-      wrapProgram $out/bin/emacs --prefix PATH : ${lib.makeBinPath apps}
-            --prefix PYTHONPATH : "$(toPythonPath ${python36}):$(toPythonPath ${pip}):$PYTHONPATH" \
-            --prefix PYTHONPATH : "$(toPythonPath ${virtualenv})" \
-            --prefix PYTHONPATH : "$(toPythonPath ${elpy})" \
-            --prefix PYTHONPATH : "$(toPythonPath ${jedi})" \
-            --prefix PYTHONPATH : "$(toPythonPath ${autopep8})" \
-            --prefix PYTHONPATH : "$(toPythonPath ${flake8})" \
-            --prefix PYTHONPATH : "$(toPythonPath ${grammalecte})" \
-            --prefix PYTHONPATH : "$(toPythonPath ${python27Packages.rope})";
+      # bin
+      wrapProgram $out/bin/emacs --prefix PATH : "${lib.makeBinPath apps}"
+      # python
+      wrapProgram $out/bin/emacs --prefix PYTHONPATH : "$(toPythonPath ${pip})" 
+      wrapProgram $out/bin/emacs --prefix PYTHONPATH : "$(toPythonPath ${virtualenv})"
+      wrapProgram $out/bin/emacs --prefix PYTHONPATH : "$(toPythonPath ${elpy})"
+      wrapProgram $out/bin/emacs --prefix PYTHONPATH : "$(toPythonPath ${jedi})"
+      wrapProgram $out/bin/emacs --prefix PYTHONPATH : "$(toPythonPath ${autopep8})"
+      wrapProgram $out/bin/emacs --prefix PYTHONPATH : "$(toPythonPath ${flake8})"
+      wrapProgram $out/bin/emacs --prefix PYTHONPATH : "$(toPythonPath ${rope})"
       '');
   })
