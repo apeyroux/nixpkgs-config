@@ -6,9 +6,7 @@ let
   # apps = with haskell.packages.ghc861; [
   # apps = with haskellPackages; [
   apps = [
-      # (import ./hie.nix { inherit pkgs; })
-      # end pdf
-      # pdf tools
+      (import ./hie.nix { inherit pkgs; })
       ag
       aspellWithDictFR
       autoconf

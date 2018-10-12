@@ -5,7 +5,7 @@ with pkgs;
 (import (fetchFromGitHub { owner = "apeyroux";
                            repo = "hie-nix";
                            rev = "update";
-                           sha256 = "03w21cn5n3z0ldjmnl2mzza9jysw5avhip6cpgb4anbjyvkzpnqf"; }) {}).hie84.overrideDerivation(old: {
+                           sha256 = "1wjg9qal4d0hjb5p7rf8v7gr0z59fkzipxas65fd5xflzs4g9ama"; }) {}).hie84.overrideDerivation(old: {
 
                            
 
