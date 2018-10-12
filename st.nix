@@ -3,7 +3,11 @@
 with pkgs;
 
 st.override {
-  patches = [./st/st-scrollback-0.8.diff];
+  patches = [
+          ./st/st-scrollback-0.8.diff
+          ./st/st-hidecursor-0.8.1.diff
+          # ./st/st-keyboard_select-0.8.1.diff
+  ];
   conf = ''
 /* See LICENSE file for copyright and license details. */
 
