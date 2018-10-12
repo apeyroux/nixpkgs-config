@@ -2,7 +2,9 @@
 
 with pkgs;
 
-st.override { conf = ''
+st.override {
+  patches = [./st/st-scrollback-0.8.diff];
+  conf = ''
 /* See LICENSE file for copyright and license details. */
 
 /*
@@ -185,6 +187,8 @@ static Shortcut shortcuts[] = {
 	{ TERMMOD,              XK_Y,           selpaste,       {.i =  0} },
 	{ TERMMOD,              XK_Num_Lock,    numlock,        {.i =  0} },
 	{ TERMMOD,              XK_I,           iso14755,       {.i =  0} },
+	{ TERMMOD,              XK_Up,          kscrollup,      {.i = -1} },
+	{ TERMMOD,              XK_Down,        kscrolldown,    {.i = -1} },
 };
 
 /*
