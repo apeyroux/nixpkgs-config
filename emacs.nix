@@ -1,20 +1,28 @@
-{pkgs}:
+{ pkgs }:
 
 with pkgs;
 
 let
+  bintools = binutils.bintools;
+  rust-src = fetchFromGitHub {
+    owner = "mozilla";
+    repo = "nixpkgs-mozilla";
+    # 191019
+    rev = "65bfcb376612a2dc0439346e3af8dd0cd257a3de";
+    sha256 = "034m1dryrzh2lmjvk3c0krgip652dql46w5yfwpvh7gavd3iypyw";
+  };
   # apps = with haskell.packages.ghc861; [
   # apps = with haskellPackages; [
-  apps = [
+  apps =   with import "${rust-src.out}/rust-overlay.nix" pkgs pkgs; [
       (import ./hie.nix { inherit pkgs; })
       ag
       aspellWithDictFR
       autoconf
       automake
       binutils
+      bintools
       cabal-install
       cabal2nix
-      cargo
       docker-machine
       emacs-all-the-icons-fonts
       gcc
@@ -51,7 +59,13 @@ let
       python36Packages.ipython
       python36Packages.jedi
       python36Packages.virtualenv
-      rustc
+      rustChannels.nightly.cargo
+      rustChannels.nightly.rust
+      rustChannels.nightly.rust-docs
+      rustChannels.nightly.rustc
+      rustracer
+      rustracerd
+      rustfmt
       siji
       stack
       tshark
