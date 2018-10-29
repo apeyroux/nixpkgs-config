@@ -1,16 +1,18 @@
 {pkgs}:
 
 with pkgs;
+with import <nixos> {};
 
 let
 
-  # version = "1.25.1";
+  version = "1.28.2";
   hie = (import ./hie.nix { inherit pkgs; });
-  apps = with haskellPackages; with pythonPackages; [
+  apps = with haskellPackages; with pythonPackages; with latest; [
         binutils.bintools
         cabal-install
         cabal2nix
         gcc
+        rustChannels.nightly.rust
         ghc
         alsa-core
         gnumake
@@ -28,12 +30,12 @@ let
 in
 
   vscode.overrideDerivation (old: {
-    # name = "vscode-${version}";
-    # src = fetchurl {
-    #   name = "VSCode_${version}_${plat}.${archive_fmt}";
-    #   url = "https://vscode-update.azurewebsites.net/${version}/${plat}/${channel}";
-    #   sha256 = "0f1lpwyxfchmbymzzxv97w9cy1z5pdljhwm49mc5v84aygmvnmjq";
-    # };
+    name = "vscode-${version}";
+    src = fetchurl {
+      name = "VSCode_${version}_${plat}.${archive_fmt}";
+      url = "https://vscode-update.azurewebsites.net/${version}/${plat}/${channel}";
+      sha256 = "1z50hkr9mcf76hlr1jb80nbvpxbpm2bh0l63yh9yqpalmz66xbfy";
+    };
     postFixup = old.postFixup + ''
       wrapProgram $out/bin/code --prefix PATH : ${lib.makeBinPath apps}
     '';

@@ -4,16 +4,16 @@ with pkgs;
 
 let
   bintools = binutils.bintools;
-  rust-src = fetchFromGitHub {
-    owner = "mozilla";
-    repo = "nixpkgs-mozilla";
-    # 191019
-    rev = "65bfcb376612a2dc0439346e3af8dd0cd257a3de";
-    sha256 = "034m1dryrzh2lmjvk3c0krgip652dql46w5yfwpvh7gavd3iypyw";
-  };
+  # rust-src = fetchFromGitHub {
+  #   owner = "mozilla";
+  #   repo = "nixpkgs-mozilla";
+  #   rev = "master";
+  #   sha256 = "0l0vqbbm93hnd1w0qkrfvg4yml7rq62jn554li05hlf90765fy50";
+  # };
   # apps = with haskell.packages.ghc861; [
   # apps = with haskellPackages; [
-  apps =   with import "${rust-src.out}/rust-overlay.nix" pkgs pkgs; [
+  # apps = with import "${rust-src.out}/rust-overlay.nix" pkgs pkgs; [
+  apps = with import "/home/alex/.config/nixpkgs/overlays/rust-overlay.nix" pkgs pkgs; [
       (import ./hie.nix { inherit pkgs; })
       ag
       aspellWithDictFR
@@ -26,6 +26,7 @@ let
       docker-machine
       emacs-all-the-icons-fonts
       gcc
+      gdb
       ghc
       git
       gnumake
@@ -62,7 +63,6 @@ let
       rustChannels.nightly.cargo
       rustChannels.nightly.rust
       rustChannels.nightly.rust-docs
-      rustChannels.nightly.rustc
       rustracer
       rustracerd
       rustfmt
