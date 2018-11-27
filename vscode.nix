@@ -1,25 +1,24 @@
 {pkgs}:
 
 with pkgs;
-with import <nixos> {};
 
 let
 
-  version = "1.28.2";
+  version = "1.29.1";
   hie = (import ./hie.nix { inherit pkgs; });
-  apps = with haskellPackages; with pythonPackages; with latest; [
+  apps = with haskellPackages; with python3Packages; [
         binutils.bintools
         cabal-install
         cabal2nix
         gcc
-        rustChannels.nightly.rust
+        (import <nixos> {}).rustChannels.stable.rust
         ghc
         alsa-core
         gnumake
         hdevtools
         hie
         hoogle
-        ipython
+        (python3.withPackages(py3: with py3; [pylint pip]))
         perl
         stack
   ];
@@ -34,7 +33,7 @@ in
     src = fetchurl {
       name = "VSCode_${version}_${plat}.${archive_fmt}";
       url = "https://vscode-update.azurewebsites.net/${version}/${plat}/${channel}";
-      sha256 = "1z50hkr9mcf76hlr1jb80nbvpxbpm2bh0l63yh9yqpalmz66xbfy";
+      sha256 = "1r66mjz4lgv3dk0rjb9p27ha9y7vj7xld9x9gqnjxqx9ify71r9i";
     };
     postFixup = old.postFixup + ''
       wrapProgram $out/bin/code --prefix PATH : ${lib.makeBinPath apps}

@@ -60,9 +60,9 @@ let
       python36Packages.ipython
       python36Packages.jedi
       python36Packages.virtualenv
-      rustChannels.nightly.cargo
-      rustChannels.nightly.rust
-      rustChannels.nightly.rust-docs
+      rustChannels.stable.cargo
+      rustChannels.stable.rust
+      rustChannels.stable.rust-docs
       rustracer
       rustracerd
       rustfmt
