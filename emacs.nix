@@ -36,6 +36,7 @@ let
       haskellPackages.hindent
       haskellPackages.hlint
       haskellPackages.hoogle
+      haskellPackages.fast-tags
       haskellPackages.hpack
       haskellPackages.structured-haskell-mode
       haskellPackages.stylish-haskell

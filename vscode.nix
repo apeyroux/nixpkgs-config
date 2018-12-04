@@ -3,31 +3,28 @@
 with pkgs;
 
 let
-
   version = "1.29.1";
-  hie = (import ./hie.nix { inherit pkgs; });
   apps = with haskellPackages; with python3Packages; [
+        (import ./hie.nix { inherit pkgs; })
+        (import <nixos> {}).rustChannels.stable.rust
+        (python3.withPackages(py3: with py3; [pylint pip]))
+        alsa-core
         binutils.bintools
         cabal-install
         cabal2nix
         gcc
-        (import <nixos> {}).rustChannels.stable.rust
-        ghc
-        alsa-core
+        haskell.compiler.ghc844
         gnumake
         hdevtools
-        hie
         hoogle
-        (python3.withPackages(py3: with py3; [pylint pip]))
+        hpack
         perl
         stack
   ];
   plat = "linux-x64";
   channel = "stable";
   archive_fmt = if stdenv.system == "x86_64-darwin" then "zip" else "tar.gz";
-
 in
-
   vscode.overrideDerivation (old: {
     name = "vscode-${version}";
     src = fetchurl {
