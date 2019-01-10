@@ -22,4 +22,7 @@ in
 
 duplicity.overrideDerivation (old: {
   propagatedBuildInputs = old.propagatedBuildInputs ++ [ pydrive ];
+  postInstall = old.postInstall + ''
+  wrapProgram "$out/bin/duplicity" --set GOOGLE_DRIVE_SETTINGS "/home/alex/.duplicity/credentials"
+  '';
 })
