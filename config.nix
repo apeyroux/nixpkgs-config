@@ -8,5 +8,9 @@ with import <nixpkgs> {};
     st = (import ./st.nix { inherit pkgs; });
     duplicity = (import ./duplicity.nix { inherit pkgs; });
     spotify = (import ./spotify.nix { inherit pkgs;});
+    google-chrome = (import ./google-chrome.nix { inherit pkgs;});
+    stable-rust = (rustChannels.stable.rust.override {
+         targets = [ "x86_64-unknown-linux-gnu" "x86_64-unknown-linux-musl" ];
+    });
   };
 }
