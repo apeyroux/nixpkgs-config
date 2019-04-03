@@ -12,5 +12,8 @@ with import <nixpkgs> {};
     stable-rust = (rustChannels.stable.rust.override {
          targets = [ "x86_64-unknown-linux-gnu" "x86_64-unknown-linux-musl" ];
     });
+    nightly-rust = (rustChannels.nightly.rust.override {
+         targets = [ "x86_64-unknown-linux-gnu" "x86_64-unknown-linux-musl" ];
+    });
   };
 }
